@@ -149,7 +149,8 @@ jobs:
           xbps-rindex --privkey private.pem --sign --signedby "${{ env.REPO_NAME }}-github-action" $PWD
           xbps-rindex --privkey private.pem --sign-pkg *.xbps
 
-      - name: checksumworking-directory: void-packages/hostdir/binpkgs/
+      - name: checksum
+        working-directory: void-packages/hostdir/binpkgs/
         run: |
           for file in *.xbps; do
             sha256sum "$file" | cut -d ' ' -f 1 > "${file}.sha256sum"
