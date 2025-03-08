@@ -64,72 +64,46 @@ jobs:
 
       # ---------------------------------------------------------------------
 
-      # - name: build tomlplusplus
-      #   working-directory: void-packages
-      #   run: |
-      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} tomlplusplus
-
-      # - name: build sdbus-cpp
-      #   working-directory: void-packages
-      #   run: |
-      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} sdbus-cpp
+      - name: build requirements
+        working-directory: void-packages
+        run: |
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} libtoml++
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} libspng
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} sdbus-cpp
 
       # ---------------------------------------------------------------------
 
-      - name: build hyprutils
+      - name: build hyprland deps
         working-directory: void-packages
         run: |
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
-
-      - name: build hyprlang
-        working-directory: void-packages
-        run: |
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
-
-      - name: build hyprcursor
-        working-directory: void-packages
-        run: |
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprcursor
-
-      - name: build hyprwayland-scanner
-        working-directory: void-packages
-        run: |
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprgraphics
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprwayland-scanner
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} xdg-desktop-portal-hyprland
 
-      - name: build aquamarine
+      - name: build hyprland utils
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hypridle
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprsunset
+
+      - name: build hyprland qt apps
+        working-directory: void-packages
+        run: |
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-qt-support
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpolkitagent
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprsysteminfo
 
       - name: build hyprland
         working-directory: void-packages
         run: |
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland
-
-      - name: build hyprland-protocols
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
-
-      - name: build xdg-desktop-portal-hyprland
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} xdg-desktop-portal-hyprland
-
-      - name: build hypridle
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hypridle
-
-      - name: build hyprlock
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
-
-      - name: build hyprpaper
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
 
       - name: build swayosd
         working-directory: void-packages
