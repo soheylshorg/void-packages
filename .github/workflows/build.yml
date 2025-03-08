@@ -99,6 +99,7 @@ jobs:
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-qt-support
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpolkitagent
           ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprsysteminfo
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-qtutils
 
       - name: build hyprland
         working-directory: void-packages
