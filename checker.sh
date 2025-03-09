@@ -31,9 +31,16 @@ log() {
 fetch_version() {
 	repo=$1
 	# latest_tag=$(curl -s "https://api.github.com/repos/hyprwm/$repo/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
-	latest_tag=$(curl -s "https://github.com/hyprwm/$repo/releases" | grep -Po 'href="[^"]*/releases/tag/\K[^"]+' | head -n 1)
+	#latest_tag=$(curl -s "https://github.com/hyprwm/$repo/releases" | grep -Po 'href="[^"]*/releases/tag/\K[^"]+' | head -n 1)
 
-	echo $latest_tag
+	#echo $latest_tag
+	repo="zen-browser/desktop"
+	latest_tag=$(curl -s "https://github.com/$repo/releases" | grep -Po 'href="[^"]*/releases/tag/\K[^"]+' | head -n 1)
+
+	echo "Latest version: $latest_tag"
+
+	wget "https://github.com/$repo/archive/refs/tags/$latest_tag.tar.gz"
+
 }
 
 main() {
@@ -43,12 +50,13 @@ main() {
 		exit 1
 	}
 
-	for package_dir in "$template_dir"/aquamarine/ "$template_dir"/hypr*/ "$template_dir"/xdg-desktop-portal-hyprland/; do
+	# for package_dir in "$template_dir"/aquamarine/ "$template_dir"/hypr*/ "$template_dir"/xdg-desktop-portal-hyprland/; do
+		for package_dir in "$template_dir"/zen-browser/; do
 		pkgname=$(basename "$package_dir")
 
-		if [[ "$pkgname" == "hyprland-devel" ]]; then
-			continue
-		fi
+		# if [[ "$pkgname" == "hyprland-devel" ]]; then
+		 	continue
+		 fi
 
 		template_file="${package_dir}template"
 

@@ -64,57 +64,63 @@ jobs:
 
       # ---------------------------------------------------------------------
 
-      - name: build requirements
+      # - name: build requirements
+      #   working-directory: void-packages
+      #   run: |
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} libtoml++
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} libspng
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} sdbus-cpp
+
+      # # ---------------------------------------------------------------------
+
+      # - name: build hyprland deps
+      #   working-directory: void-packages
+      #   run: |
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprcursor
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprgraphics
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprwayland-scanner
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} xdg-desktop-portal-hyprland
+
+      # - name: build hyprland utils
+      #   working-directory: void-packages
+      #   run: |
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hypridle
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprsunset
+
+      # - name: build hyprland qt apps
+      #   working-directory: void-packages
+      #   run: |
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-qt-support
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpolkitagent
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprsysteminfo
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-qtutils
+
+      # - name: build hyprland
+      #   working-directory: void-packages
+      #   run: |
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland
+
+      # - name: build swayosd
+      #   working-directory: void-packages
+      #   run: |
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} swayosd
+
+      # - name: build rofi wayland
+      #   working-directory: void-packages
+      #   run: |
+      #     ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} rofi-wayland
+      
+      - name: build zen-browser
         working-directory: void-packages
         run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} libtoml++
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} libspng
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} sdbus-cpp
+          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} zen-browser
 
-      # ---------------------------------------------------------------------
-
-      - name: build hyprland deps
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprutils
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlang
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprcursor
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprgraphics
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprwayland-scanner
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} aquamarine
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-protocols
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} xdg-desktop-portal-hyprland
-
-      - name: build hyprland utils
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hypridle
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprlock
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpaper
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprsunset
-
-      - name: build hyprland qt apps
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-qt-support
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprpolkitagent
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprsysteminfo
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland-qtutils
-
-      - name: build hyprland
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} hyprland
-
-      - name: build swayosd
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} swayosd
-
-      - name: build rofi wayland
-        working-directory: void-packages
-        run: |
-          ./xbps-src pkg -j$(nproc) -m masterdir-${{ matrix.arch }} rofi-wayland
 
       - name: sign
         working-directory: void-packages/hostdir/binpkgs/
